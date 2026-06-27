@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
+import TrustStrip from "@/components/TrustStrip";
 import Services from "@/components/Services";
 import WhyUs from "@/components/WhyUs";
 import Contact from "@/components/Contact";
@@ -16,6 +17,7 @@ export default function Home() {
       <main>
         <Hero />
         <About />
+        <TrustStrip />
         <Services />
         <WhyUs />
         <Contact />

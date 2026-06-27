@@ -128,6 +128,62 @@ export const services: Service[] = [
       "HR Policies, SOPs, and Compliance Manuals",
     ],
   },
+  {
+    id: "bookkeeping",
+    title: "Accounting & Bookkeeping",
+    icon: "book",
+    summary:
+      "Accurate, up-to-date books and accounting records so you always know where your business stands.",
+    items: [
+      "Day-to-day Bookkeeping & Ledger Maintenance",
+      "Bank & Account Reconciliations",
+      "Preparation of Financial Statements",
+      "Accounts Payable & Receivable Management",
+      "Periodic Management Reports",
+    ],
+  },
+  {
+    id: "pos-integration",
+    title: "Sales Tax (POS) Integration",
+    icon: "pos",
+    summary:
+      "Integrate your point-of-sale systems with FBR & provincial authorities for real-time sales tax compliance.",
+    items: [
+      "FBR POS Integration & Registration",
+      "Provincial Sales Tax (PRA/SRB/KPRA) POS Setup",
+      "Real-time Invoice Reporting",
+      "POS System Configuration & Troubleshooting",
+      "Ongoing Compliance Monitoring",
+    ],
+  },
+  {
+    id: "uk-taxation",
+    title: "UK Taxation for Overseas Clients",
+    icon: "globe",
+    summary:
+      "Specialized tax support for overseas Pakistanis and UK-based clients with cross-border tax obligations.",
+    items: [
+      "UK Self-Assessment Tax Returns",
+      "Overseas Income & Dual-Status Guidance",
+      "HMRC Registration & Correspondence",
+      "Cross-border Tax Planning",
+      "Remittance & Compliance Advisory",
+    ],
+  },
+  {
+    id: "visa-filing",
+    title: "Visa Filing & Documentation",
+    icon: "passport",
+    summary:
+      "End-to-end assistance with visa applications and the supporting financial documentation you need.",
+    items: [
+      "Visa Application Filing & Submission",
+      "Financial & Tax Document Preparation",
+      "Bank Statement & Wealth Proof Support",
+      "Sponsorship & Invitation Documentation",
+      "Guidance Through the Application Process",
+    ],
+  },
 ];
 
 export const whyUs: { title: string; description: string; icon: string }[] = [

@@ -85,6 +85,26 @@ export const Icons = {
       <path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M18.4 5.6l-2.8 2.8M8.4 15.6l-2.8 2.8" />
     </svg>
   ),
+  book: (p: IconProps) => (
+    <svg {...base(p)}>
+      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z" />
+      <path d="M9 7h7M9 11h7" />
+    </svg>
+  ),
+  pos: (p: IconProps) => (
+    <svg {...base(p)}>
+      <rect x="3" y="3" width="18" height="13" rx="2" />
+      <path d="M7 8h10M7 11h6M2 20h20M9 16v4M15 16v4" />
+    </svg>
+  ),
+  passport: (p: IconProps) => (
+    <svg {...base(p)}>
+      <rect x="5" y="2" width="14" height="20" rx="2" />
+      <circle cx="12" cy="10" r="3" />
+      <path d="M9 16h6" />
+    </svg>
+  ),
   phone: (p: IconProps) => (
     <svg {...base(p)}>
       <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" />
