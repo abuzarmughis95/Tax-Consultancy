@@ -24,6 +24,14 @@
 .DS_Store
 *.pem
 
+# playwright / scratch screenshots
+.playwright-mcp/
+/crop*.png
+/final-header*.png
+/logo-header.png
+/logo2.png
+/reviews.png
+
 # debug
 npm-debug.log*
 yarn-debug.log*

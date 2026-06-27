@@ -1,5 +1,6 @@
 import { site } from "@/lib/site";
 import { services } from "@/lib/services";
+import { testimonials } from "@/lib/testimonials";
 
 // Structured data (schema.org) for rich results & local SEO.
 export default function JsonLd() {
@@ -14,6 +15,18 @@ export default function JsonLd() {
         url: site.url,
         telephone: site.phoneIntl,
         email: site.email,
+        contactPoint: [
+          {
+            "@type": "ContactPoint",
+            telephone: site.phoneIntl,
+            contactType: "customer service",
+          },
+          {
+            "@type": "ContactPoint",
+            telephone: site.landlineIntl,
+            contactType: "customer service",
+          },
+        ],
         areaServed: {
           "@type": "Country",
           name: site.country,
@@ -24,6 +37,22 @@ export default function JsonLd() {
         },
         priceRange: "$$",
         knowsAbout: services.map((s) => s.title),
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: "5",
+          bestRating: "5",
+          ratingCount: testimonials.length,
+        },
+        review: testimonials.map((t) => ({
+          "@type": "Review",
+          reviewRating: {
+            "@type": "Rating",
+            ratingValue: t.rating,
+            bestRating: 5,
+          },
+          author: { "@type": "Person", name: t.name },
+          reviewBody: t.quote,
+        })),
         hasOfferCatalog: {
           "@type": "OfferCatalog",
           name: "Tax & Corporate Services",

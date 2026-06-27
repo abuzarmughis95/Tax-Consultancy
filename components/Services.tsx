@@ -9,7 +9,7 @@ export default function Services() {
   return (
     <section
       id="services"
-      className="scroll-mt-20 bg-white py-20 lg:py-28"
+      className="bg-white py-20 lg:py-28"
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <Reveal className="mx-auto max-w-2xl text-center">

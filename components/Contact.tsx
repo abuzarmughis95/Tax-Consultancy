@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { site, whatsappLink, telLink, mailLink } from "@/lib/site";
+import { site, whatsappLink, telLink, landlineLink, mailLink } from "@/lib/site";
 import { Reveal } from "./motion";
 import { Icon, type IconName } from "./icons";
 
@@ -23,9 +23,15 @@ const channels: {
   },
   {
     icon: "phone",
-    label: "Call Now",
+    label: "Mobile",
     value: site.phone,
     href: telLink,
+  },
+  {
+    icon: "landline",
+    label: "Landline",
+    value: site.landline,
+    href: landlineLink,
   },
   {
     icon: "mail",
@@ -37,7 +43,7 @@ const channels: {
 
 export default function Contact() {
   return (
-    <section id="contact" className="scroll-mt-20 py-20 lg:py-28">
+    <section id="contact" className="py-20 lg:py-28">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <Reveal>
           <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-900 to-brand-dark px-6 py-14 shadow-2xl sm:px-12 lg:py-20">
@@ -59,7 +65,7 @@ export default function Contact() {
               </p>
             </div>
 
-            <div className="relative mx-auto mt-12 grid max-w-3xl gap-4 sm:grid-cols-3">
+            <div className="relative mx-auto mt-12 grid max-w-4xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {channels.map((c, i) => (
                 <motion.a
                   key={c.label}

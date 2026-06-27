@@ -1,13 +1,16 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { navLinks, site, whatsappLink } from "@/lib/site";
+import { useActiveSection } from "@/lib/useActiveSection";
 import { Icon } from "./icons";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const active = useActiveSection(navLinks.map((l) => l.href));
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -29,38 +32,62 @@ export default function Header() {
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+      className={`fixed inset-x-0 top-0 z-50 border-b transition-all duration-300 ${
         scrolled
-          ? "border-b border-slate-200 bg-white/80 backdrop-blur-md shadow-sm"
-          : "bg-transparent"
+          ? "border-slate-200 bg-white/80 shadow-sm backdrop-blur-md"
+          : "border-transparent bg-transparent"
       }`}
     >
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:h-20">
-        <a href="#home" className="group flex items-center gap-2.5">
-          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-brand to-accent font-bold text-white shadow-md shadow-brand/30 transition-transform group-hover:scale-105">
-            BT
-          </span>
-          <span className="flex flex-col leading-tight">
-            <span className="text-sm font-semibold text-slate-900 sm:text-base">
-              {site.shortName}
-            </span>
-            <span className="text-[10px] font-medium uppercase tracking-wider text-slate-500">
-              Tax Consultants
-            </span>
-          </span>
+        <a
+          href="#home"
+          aria-label={site.name}
+          className="group flex items-center"
+        >
+          <Image
+            src="/logo-graph.png"
+            alt=""
+            width={1500}
+            height={1000}
+            priority
+            className="h-11 w-auto shrink-0 transition-transform group-hover:scale-105 lg:h-12"
+          />
+          <Image
+            src="/text-logo.png"
+            alt={site.name}
+            width={1240}
+            height={230}
+            priority
+            className="h-7 w-auto sm:h-8"
+          />
         </a>
 
         <ul className="hidden items-center gap-1 md:flex">
-          {navLinks.map((l) => (
-            <li key={l.href}>
-              <a
-                href={l.href}
-                className="relative rounded-full px-4 py-2 text-sm font-medium text-slate-600 transition-colors hover:text-brand-dark"
-              >
-                {l.label}
-              </a>
-            </li>
-          ))}
+          {navLinks.map((l) => {
+            const isActive = active === l.href;
+            return (
+              <li key={l.href}>
+                <a
+                  href={l.href}
+                  aria-current={isActive ? "page" : undefined}
+                  className={`relative rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                    isActive
+                      ? "text-brand-dark"
+                      : "text-slate-600 hover:text-brand-dark"
+                  }`}
+                >
+                  {isActive && (
+                    <motion.span
+                      layoutId="nav-pill"
+                      className="absolute inset-0 rounded-full bg-brand/10"
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                  <span className="relative z-10">{l.label}</span>
+                </a>
+              </li>
+            );
+          })}
         </ul>
 
         <div className="hidden md:block">
@@ -96,17 +123,40 @@ export default function Header() {
             className="overflow-hidden border-t border-slate-200 bg-white md:hidden"
           >
             <ul className="space-y-1 px-4 py-4">
-              {navLinks.map((l) => (
-                <li key={l.href}>
-                  <a
-                    href={l.href}
-                    onClick={() => setOpen(false)}
-                    className="block rounded-lg px-4 py-3 text-base font-medium text-slate-700 transition hover:bg-slate-50 hover:text-brand-dark"
-                  >
-                    {l.label}
-                  </a>
-                </li>
-              ))}
+              {navLinks.map((l) => {
+                const isActive = active === l.href;
+                return (
+                  <li key={l.href}>
+                    <a
+                      href={l.href}
+                      aria-current={isActive ? "page" : undefined}
+                      onClick={(e) => {
+                        // Close the menu first (which unlocks body scroll), then
+                        // scroll manually on the next frame so the offset is
+                        // computed against the unlocked page — not the locked one.
+                        e.preventDefault();
+                        setOpen(false);
+                        const target = document.getElementById(
+                          l.href.replace("#", "")
+                        );
+                        requestAnimationFrame(() => {
+                          requestAnimationFrame(() => {
+                            target?.scrollIntoView({ behavior: "smooth" });
+                            history.replaceState(null, "", l.href);
+                          });
+                        });
+                      }}
+                      className={`block rounded-lg px-4 py-3 text-base font-medium transition ${
+                        isActive
+                          ? "bg-brand/10 text-brand-dark"
+                          : "text-slate-700 hover:bg-slate-50 hover:text-brand-dark"
+                      }`}
+                    >
+                      {l.label}
+                    </a>
+                  </li>
+                );
+              })}
               <li className="pt-2">
                 <a
                   href={whatsappLink}

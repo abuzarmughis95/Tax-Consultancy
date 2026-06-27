@@ -19,13 +19,51 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 5rem;
+  /* offset anchor targets by the fixed header height (+ small gap) */
+  scroll-padding-top: 4.5rem; /* header is 4rem (h-16) on mobile */
+}
+
+@media (min-width: 1024px) {
+  html {
+    scroll-padding-top: 5.5rem; /* header is 5rem (h-20) on desktop */
+  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   -webkit-font-smoothing: antialiased;
+}
+
+/* Elegant footer helpers */
+.footer-heading {
+  position: relative;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #fff;
+  padding-bottom: 0.5rem;
+}
+.footer-heading::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 28px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #c8a24a, transparent);
+}
+.footer-link {
+  display: inline-block;
+  font-size: 0.875rem;
+  color: rgb(148 163 184);
+  transition: color 0.2s, transform 0.2s;
+}
+.footer-link:hover {
+  color: #c8a24a;
+  transform: translateX(3px);
 }
 
 /* Subtle decorative grid used behind the hero */

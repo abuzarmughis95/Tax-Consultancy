@@ -9,7 +9,7 @@ export default function WhyUs() {
   return (
     <section
       id="why-us"
-      className="relative scroll-mt-20 overflow-hidden py-20 lg:py-28"
+      className="relative overflow-hidden py-20 lg:py-28"
     >
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute left-1/2 top-0 h-72 w-72 -translate-x-1/2 rounded-full bg-brand/10 blur-3xl" />

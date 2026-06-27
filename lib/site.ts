@@ -10,6 +10,8 @@ export const site = {
   url: "https://burneytomar.com",
   phone: "0315-4337860",
   phoneIntl: "+923154337860", // used for tel: and WhatsApp links
+  landline: "042-36442954",
+  landlineIntl: "+924236442954",
   email: "rimsha.abuzar1@gmail.com",
   country: "Pakistan",
   whatsappMessage:
@@ -22,6 +24,7 @@ export const whatsappLink = `https://wa.me/${site.phoneIntl.replace(
 )}?text=${encodeURIComponent(site.whatsappMessage)}`;
 
 export const telLink = `tel:${site.phoneIntl}`;
+export const landlineLink = `tel:${site.landlineIntl}`;
 export const mailLink = `mailto:${site.email}`;
 
 export const navLinks = [
@@ -29,5 +32,6 @@ export const navLinks = [
   { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
   { label: "Why Us", href: "#why-us" },
+  { label: "Reviews", href: "#testimonials" },
   { label: "Contact", href: "#contact" },
 ] as const;

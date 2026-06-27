@@ -1,11 +1,18 @@
 import { ImageResponse } from "next/og";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 import { site } from "@/lib/site";
 
 export const alt = site.name;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export default function OgImage() {
+export default async function OgImage() {
+  // Load the brand logo and inline it as a data URI (Satori needs this for
+  // local images).
+  const logoData = await readFile(join(process.cwd(), "public", "logo-graph.png"));
+  const logoSrc = `data:image/png;base64,${logoData.toString("base64")}`;
+
   return new ImageResponse(
     (
       <div
@@ -16,46 +23,22 @@ export default function OgImage() {
           flexDirection: "column",
           justifyContent: "center",
           padding: "80px",
-          background: "linear-gradient(135deg, #0f172a 0%, #0369a1 100%)",
-          color: "white",
+          background: "#ffffff",
+          color: "#0f172a",
           fontFamily: "sans-serif",
         }}
       >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={logoSrc} alt="" width={520} height={347} />
         <div
           style={{
             display: "flex",
-            alignItems: "center",
-            gap: 16,
-            fontSize: 26,
-            fontWeight: 600,
-            color: "#5eead4",
-          }}
-        >
-          <div
-            style={{
-              width: 56,
-              height: 56,
-              borderRadius: 16,
-              background: "linear-gradient(135deg,#0ea5e9,#14b8a6)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontWeight: 700,
-              color: "white",
-            }}
-          >
-            BT
-          </div>
-          <span>{site.name}</span>
-        </div>
-        <div
-          style={{
-            display: "flex",
-            marginTop: 36,
-            fontSize: 76,
+            marginTop: 40,
+            fontSize: 56,
             fontWeight: 800,
             lineHeight: 1.05,
-            maxWidth: 900,
+            maxWidth: 980,
+            color: "#0f172a",
           }}
         >
           Professional Tax Preparation Service
@@ -63,10 +46,10 @@ export default function OgImage() {
         <div
           style={{
             display: "flex",
-            marginTop: 28,
-            fontSize: 30,
-            color: "#cbd5e1",
-            maxWidth: 820,
+            marginTop: 24,
+            fontSize: 28,
+            color: "#475569",
+            maxWidth: 900,
           }}
         >
           Tax filing · SECP compliance · Company registration · Licensing
@@ -74,9 +57,10 @@ export default function OgImage() {
         <div
           style={{
             display: "flex",
-            marginTop: 40,
-            fontSize: 26,
-            color: "#94a3b8",
+            marginTop: 32,
+            fontSize: 24,
+            color: "#b8860b",
+            fontWeight: 600,
           }}
         >
           {`${site.phone} · ${site.country}`}
